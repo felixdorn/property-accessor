@@ -3,13 +3,22 @@
 namespace Felix\PropertyAccessor;
 
 use Felix\PropertyAccessor\Exceptions\PropertyDoesNotExist;
+use ReflectionFunction;
 use ReflectionParameter;
 
+/**
+ * @param string|string[]|\Closure $callback
+ *
+ * @return array|mixed
+ *
+ * @throws PropertyDoesNotExist
+ * @throws \ReflectionException
+ */
 function access(object $object, $callback)
 {
     $properties = [];
 
-    if (is_callable($callback)) {
+    if ($callback instanceof \Closure) {
         $reflectedCallback = new \ReflectionFunction($callback);
         $properties        = array_map(fn (ReflectionParameter $parameter) => $parameter->getName(), $reflectedCallback->getParameters());
     }
@@ -35,8 +44,9 @@ function access(object $object, $callback)
         $resolved[$property->getName()] = $property->getValue($object);
     }
 
-    if (is_callable($callback)) {
-        return $reflectedCallback->invokeArgs($resolved);
+    if ($callback instanceof \Closure) {
+        // $reflectedCallback could be used there but my IDE and the code linter don't want to.
+        return (new ReflectionFunction($callback))->invokeArgs($resolved);
     }
 
     return count($resolved) === 1 ? $resolved[array_key_first($resolved)] : $resolved;
