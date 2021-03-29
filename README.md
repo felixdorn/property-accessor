@@ -32,7 +32,7 @@ access($object, 'isbn');  // returns 44081224
 // Properties are injected based on the parameter name passed to the function.
 access($object, function ($isbn, $name) {
     return $isbn . ' - ' . $name;
-});
+}); // returns '44081124 - Harry Potter'
 
 access($object, ['isbn', 'name']); // returns ['isbn' => 44081224, 'name' => 'Harry Potter']
 ```
@@ -43,4 +43,4 @@ access($object, ['isbn', 'name']); // returns ['isbn' => 44081224, 'name' => 'Ha
 composer test
 ```
 
-**property-accessor** was created by **[Félix Dorn](https://twitter.com/afelixdorn)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
+**Property Accessor** was created by **[Félix Dorn](https://twitter.com/afelixdorn)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
