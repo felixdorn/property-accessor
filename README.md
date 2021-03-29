@@ -3,7 +3,7 @@
 [![Tests](https://github.com/felixdorn/property-accessor/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/felixdorn/property-accessor/actions/workflows/tests.yml)
 [![Formats](https://github.com/felixdorn/property-accessor/actions/workflows/formats.yml/badge.svg?branch=master)](https://github.com/felixdorn/property-accessor/actions/workflows/formats.yml)
 [![Version](https://poser.pugx.org/felixdorn/property-accessor/version)](//packagist.org/packages/felixdorn/property-accessor)
-[![Total Downloads](https://poser.pugx.org/felixdorn/property-accessor/downloads)](//packagist.org/packages/felixdorn/property-accessorqqqqqqqq)
+[![Total Downloads](https://poser.pugx.org/felixdorn/property-accessor/downloads)](//packagist.org/packages/felixdorn/property-accessor)
 [![License](https://poser.pugx.org/felixdorn/property-accessor/license)](//packagist.org/packages/felixdorn/property-accessor)
 
 ## Installation
