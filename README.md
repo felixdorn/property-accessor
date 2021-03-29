@@ -23,7 +23,7 @@ use function \Felix\PropertyAccessor\access;
 
 class Book {
     protected string $name = 'Harry Potter';
-    protected int $isbn = 4408_1224;
+    protected int $isbn = 44081224;
 }
 
 $object = new Book();
