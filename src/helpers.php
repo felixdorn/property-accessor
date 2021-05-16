@@ -8,8 +8,7 @@ use ReflectionClass;
 use ReflectionFunction;
 use ReflectionParameter;
 
-/** @param callable $callback */
-function access(object $object, $callback): mixed
+function access(object $object, string|array|\Closure $callback): mixed
 {
     $properties = [];
 
