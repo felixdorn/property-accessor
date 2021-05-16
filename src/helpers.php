@@ -2,25 +2,20 @@
 
 namespace Felix\PropertyAccessor;
 
+use Closure;
 use Felix\PropertyAccessor\Exceptions\PropertyDoesNotExist;
+use ReflectionClass;
 use ReflectionFunction;
 use ReflectionParameter;
 
-/**
- * @param string|string[]|\Closure $callback
- *
- * @return array|mixed
- *
- * @throws PropertyDoesNotExist
- * @throws \ReflectionException
- */
-function access(object $object, $callback)
+/** @param callable $callback */
+function access(object $object, $callback): mixed
 {
     $properties = [];
 
-    if ($callback instanceof \Closure) {
-        $reflectedCallback = new \ReflectionFunction($callback);
-        $properties        = array_map(fn (ReflectionParameter $parameter) => $parameter->getName(), $reflectedCallback->getParameters());
+    if ($callback instanceof Closure) {
+        $reflectedCallback = new ReflectionFunction($callback);
+        $properties = array_map(fn(ReflectionParameter $parameter) => $parameter->getName(), $reflectedCallback->getParameters());
     }
 
     if (!is_callable($callback) && is_string($callback)) {
@@ -31,7 +26,7 @@ function access(object $object, $callback)
         $properties = $callback;
     }
 
-    $reflectedObject = new \ReflectionClass($object);
+    $reflectedObject = new ReflectionClass($object);
 
     $resolved = [];
     foreach ($properties as $property) {
@@ -44,7 +39,7 @@ function access(object $object, $callback)
         $resolved[$property->getName()] = $property->getValue($object);
     }
 
-    if ($callback instanceof \Closure) {
+    if ($callback instanceof Closure) {
         // $reflectedCallback could be used there but my IDE and the code linter don't want to.
         return (new ReflectionFunction($callback))->invokeArgs($resolved);
     }
